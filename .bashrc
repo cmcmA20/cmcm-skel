@@ -61,7 +61,6 @@ if ! shopt -oq posix; then
 fi
 
 # stack completion
-STACK_CMD=`which stack`
-if [ -f $STACK_CMD ]; then
+if [ -f /usr/local/bin/stack ]; then
     eval "$(stack --bash-completion-script stack)"
 fi
