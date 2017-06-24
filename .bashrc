@@ -37,7 +37,6 @@ PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 case "$TERM" in
 xterm*|rxvt*)
   PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-  setxkbmap -layout "us,ru" -option "grp:rctrl_toggle"
   ;;
 *)
   ;;
@@ -61,6 +60,7 @@ if ! shopt -oq posix; then
 fi
 
 # stack completion
-if [ -f /usr/local/bin/stack ]; then
+STACK_CMD=`which stack`
+if [ x != x$STACK_CMD ]; then
     eval "$(stack --bash-completion-script stack)"
 fi

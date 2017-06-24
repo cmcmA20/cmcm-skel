@@ -15,3 +15,8 @@ fi
 export PAGER=`which less`
 export EDITOR=`which vim`
 export VISUAL=$EDITOR
+
+SETXKBMAP_CMD=`which setxkbmap`
+if [ x != x$SETXKBMAP_CMD ] ; then
+    setxkbmap -layout "us,ru" -option "grp:rctrl_toggle"
+fi
