@@ -12,6 +12,8 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
+fc-cache -vf $HOME/.config/fontconfig/conf.d
+
 export PAGER=`which less`
 export EDITOR=`which vim`
 export VISUAL=$EDITOR
