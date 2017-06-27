@@ -139,6 +139,7 @@ setup_skel() {
   cp -bf $CS_DEST/.bashrc $HOME/.bashrc
   cp -bf $CS_DEST/.bash_profile $HOME/.bash_profile
   cp -bf $CS_DEST/.bash_aliases $HOME/.bash_aliases
+  cp -bf $CS_DEST/.tmux.conf $HOME/.tmux.conf
 
   mkdir -p $HOME/.config/fontconfig/conf.d
   cp -R $CS_DEST/.config $HOME
