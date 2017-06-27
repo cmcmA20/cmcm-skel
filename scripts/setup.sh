@@ -133,6 +133,20 @@ setup_vim() {
   vim_install_plugins $CS_DEST
 }
 
+setup_skel() {
+  local CS_DEST=$1
+
+  cp -bf $CS_DEST/.bashrc $HOME/.bashrc
+  cp -bf $CS_DEST/.bash_profile $HOME/.bash_profile
+  cp -bf $CS_DEST/.bash_aliases $HOME/.bash_aliases
+
+  mkdir -p $HOME/.config/fontconfig/conf.d
+  cp -R $CS_DEST/.config $HOME
+  mkdir -p $HOME/.fonts
+  cp -R $CS_DEST/.fonts $HOME
+  fc-cache -vf $HOME/.fonts/
+}
+
 setup_done() {
   local CS_DEST=$1
 
