@@ -140,6 +140,7 @@ setup_skel() {
   cp -bf $CS_DEST/.bash_profile $HOME/.bash_profile
   cp -bf $CS_DEST/.bash_aliases $HOME/.bash_aliases
   cp -bf $CS_DEST/.tmux.conf $HOME/.tmux.conf
+  cp -bf $CS_DEST/.gitconfig $HOME/.gitconfig
 
   mkdir -p $HOME/.config/fontconfig/conf.d
   cp -R $CS_DEST/.config $HOME
@@ -154,8 +155,4 @@ setup_done() {
   echo -e "\n"
   msg "<---- cmcm-skel installation successfully finished ---->"
   echo -e "\n"
-
-  warn "Note for a good-looking vim experience:"
-  detail "Configure your terminal to use a font with Powerline symbols."
-  detail "https://powerline.readthedocs.org/en/master/installation.html#fonts-installation"
 }
