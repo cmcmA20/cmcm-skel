@@ -12,3 +12,5 @@ fi
 alias ls='ls --color=auto -CF'
 alias ll='ls -l'
 alias la='ls -a'
+alias lla='ls -lA'
+alias tmux='tmux -2'
