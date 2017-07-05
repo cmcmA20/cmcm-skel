@@ -34,6 +34,7 @@ package_list() {
     YUM|DNF)
       cmdpkg make make
       cmdpkg ctags ctags
+      cmdpkg par par
       echo "libcurl-devel zlib-devel powerline" ;;
   esac
 }
@@ -136,11 +137,10 @@ setup_vim() {
 setup_skel() {
   local CS_DEST=$1
 
-  cp -bf $CS_DEST/.bashrc $HOME/.bashrc
-  cp -bf $CS_DEST/.bash_profile $HOME/.bash_profile
-  cp -bf $CS_DEST/.bash_aliases $HOME/.bash_aliases
-  cp -bf $CS_DEST/.tmux.conf $HOME/.tmux.conf
-  cp -bf $CS_DEST/.gitconfig $HOME/.gitconfig
+  cp -f $CS_DEST/.bashrc       $HOME/.bashrc
+  cp -f $CS_DEST/.bash_profile $HOME/.bash_profile
+  cp -f $CS_DEST/.bash_aliases $HOME/.bash_aliases
+  cp -f $CS_DEST/.tmux.conf    $HOME/.tmux.conf
 
   mkdir -p $HOME/.config/fontconfig/conf.d
   cp -R $CS_DEST/.config $HOME

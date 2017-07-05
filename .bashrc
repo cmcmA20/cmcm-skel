@@ -61,6 +61,6 @@ fi
 
 # stack completion
 STACK_CMD=`which stack`
-if [ x != x$STACK_CMD ]; then
+if [ $? -eq 0 ]; then
     eval "$(stack --bash-completion-script stack)"
 fi
