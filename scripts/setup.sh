@@ -162,7 +162,7 @@ setup_fonts() {
   fc-cache -vf $HOME/.fonts/
 
   mkdir -p $HOME/.config/fontconfig/conf.d
-  mv -f $CS_DEST/10-powerline-symbols.otf $HOME/.config/fontconfig/conf.d/10-powerline-symbols.conf
+  mv -f $CS_DEST/10-powerline-symbols.conf $HOME/.config/fontconfig/conf.d/10-powerline-symbols.conf
 }
 
 setup_done() {
