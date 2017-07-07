@@ -137,16 +137,32 @@ setup_vim() {
 setup_skel() {
   local CS_DEST=$1
 
+  msg "Copying profile files"
   cp -f $CS_DEST/.bashrc       $HOME/.bashrc
   cp -f $CS_DEST/.bash_profile $HOME/.bash_profile
   cp -f $CS_DEST/.bash_aliases $HOME/.bash_aliases
   cp -f $CS_DEST/.tmux.conf    $HOME/.tmux.conf
+}
+
+setup_fonts() {
+  local CS_DEST=$1
+
+  msg "Installing Powerline fonts"
+  curl -ssL https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf > $CS_DEST/PowerlineSymbols.otf
+  FONTS_EC=$?
+  curl -ssL https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf > $CS_DEST/10-powerline-symbols.conf
+  FCONF_EC=$?
+  if [ $FONTS_EC != 0 ] || [ $FCONF_EC != 0 ]; then
+    err "Powerline fonts download failed"
+    return 1
+  fi
+
+  mkdir -p $HOME/.fonts
+  mv -f $CS_DEST/PowerlineSymbols.otf $HOME/.fonts/PowerlineSymbols.otf
+  fc-cache -vf $HOME/.fonts/
 
   mkdir -p $HOME/.config/fontconfig/conf.d
-  cp -R $CS_DEST/.config $HOME
-  mkdir -p $HOME/.fonts
-  cp -R $CS_DEST/.fonts $HOME
-  fc-cache -vf $HOME/.fonts/
+  mv -f $CS_DEST/10-powerline-symbols.otf $HOME/.config/fontconfig/conf.d/10-powerline-symbols.conf
 }
 
 setup_done() {

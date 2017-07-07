@@ -112,9 +112,10 @@ do_setup() {
   }
 
   setup_tools
-  setup_vim $CS_DEST
-  setup_skel $CS_DEST
-  setup_done $CS_DEST
+  setup_vim   $CS_DEST
+  setup_skel  $CS_DEST
+  setup_fonts $CS_DEST
+  setup_done  $CS_DEST
 }
 
 main() {
