@@ -7,7 +7,7 @@ SCRIPT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 # $1: command name
 # $2: package name
 cmdpkg() {
-  test -n "$(which $1)" || echo "$2"
+  test -n "$(which $1 2>/dev/null)" || echo "$2"
 }
 
 # $1: package manager
