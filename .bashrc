@@ -21,10 +21,10 @@ shopt -s checkwinsize
 
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
-#shopt -s globstar
+shopt -s globstar
 
 # make less more friendly for non-text input files, see lesspipe(1)
-#[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
@@ -42,8 +42,10 @@ xterm*|rxvt*)
   ;;
 esac
 
+# terminal is all about rainbows
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
+# some dirty trickstery
 if [ -f ~/.bash_aliases ]; then
   . ~/.bash_aliases
 fi
@@ -60,7 +62,6 @@ if ! shopt -oq posix; then
 fi
 
 # stack completion
-STACK_CMD=`which stack`
-if [ $? -eq 0 ]; then
+if command -v stack >/dev/null 2>&1 ; then
     eval "$(stack --bash-completion-script stack)"
 fi

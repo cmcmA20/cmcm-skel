@@ -26,12 +26,14 @@ package_list() {
       cmdpkg ctags ctags
       cmdpkg par par ;;
     APT)
+      cmdpkg cc gcc
       cmdpkg make make
       cmdpkg ctags exuberant-ctags
       cmdpkg par par
       cmdpkg curl curl
       echo libcurl4-openssl-dev ;;
     YUM|DNF)
+      cmdpkg cc gcc
       cmdpkg make make
       cmdpkg ctags ctags
       cmdpkg par par
