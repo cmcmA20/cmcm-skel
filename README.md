@@ -1,3 +1,11 @@
+# Attention
+
+This project is deprecated for a greater good. I've been a total ignoramus for
+quite a long time, no wonders I missed many of the beautiful repos like
+[awesome-zsh-plugins](https://github.com/unixorn/awesome-zsh-plugins) and so on.
+So now I hope to learn zsh and come up with a system for managing all the zsh
+and vim plugins from the one place. I guess it's already written btw.
+
 # cmcm-skel
 
 In 2016 I've stumbled upon the haskell-vim-now project and quite amused I was.
