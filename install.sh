@@ -12,7 +12,7 @@ backup_root=${repo_root}/backup
 
 . ${include_dir}/functions.sh
 
-#git_clone "https://github.com/callmecabman/cmcm-skel.git" "${repo_root}"
+git_clone "https://github.com/callmecabman/cmcm-skel.git" "${repo_root}"
 
 OPTIND=1
 while getopts "hdatnp:" opt; do
