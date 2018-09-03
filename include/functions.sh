@@ -73,7 +73,7 @@ git_clone() {
   else
     rm -rf "${local_dir}"
     mkdir -p "${local_dir}"
-    git clone -q "${remote}" "${local_dir}"
+    git clone --depth 1 -q "${remote}" "${local_dir}"
   fi
 }
 
