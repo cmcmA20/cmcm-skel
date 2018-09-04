@@ -22,7 +22,7 @@ mkdir -p ${HOME}/.local
       CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=${HOME}/.local/" &&\
  make install)
 
-nvim_dir=$(config_home)/nvim
+nvim_dir=$(config_home_path)/nvim
 mkdir -p "${nvim_dir}"
 safe_symlink "${nvim_dir}" "${HOME}/.vim"
 safe_symlink "${nvim_dir}/init.vim" "${HOME}/.vimrc"
