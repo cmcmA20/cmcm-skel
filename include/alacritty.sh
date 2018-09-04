@@ -8,7 +8,9 @@ dep_list() {
   echo "libfontconfig1-dev"
   echo "rustc"
   echo "cargo"
-  echo "xclip"
+  if [ x"$x11" == "xyes" ] ; then
+    echo "xclip"
+  fi
 }
 package_install $(package_manager) $(dep_list)
 

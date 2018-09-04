@@ -1,6 +1,7 @@
 #!/bin/sh
 
 #repo_root=
+#x11=yes
 
 whoami=$(readlink -f $0)
 whereami=$(dirname ${whoami})
@@ -39,7 +40,9 @@ while getopts "hdatnp:" opt; do
     safe_symlink "${HOME}/.rc" "${HOME}/.bashrc"
     safe_symlink "${HOME}/.rc" "${HOME}/.zshrc"
     safe_copy "${repo_root}/.tmux.conf" "${HOME}/.tmux.conf"
-    safe_copy "${repo_root}/.xsessionrc" "${HOME}/.xsessionrc"
+    if [ x"$x11" == "xyes" ] ; then
+      safe_copy "${repo_root}/.xsessionrc" "${HOME}/.xsessionrc"
+    fi
     ;;
   a)
     . ${include_dir}/alacritty.sh
