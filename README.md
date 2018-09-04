@@ -5,3 +5,5 @@ Shell-agnostic dotfiles with some optional stuff:
 * tmux
 * neovim
 * vim plugins
+
+Tested (./install.sh -datnp) on ubuntu and debian

@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #repo_root=
-#x11=yes
+#x11=no
 
 whoami=$(readlink -f $0)
 whereami=$(dirname ${whoami})
