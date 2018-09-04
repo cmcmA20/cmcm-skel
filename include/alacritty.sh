@@ -8,6 +8,7 @@ dep_list() {
   echo "libfontconfig1-dev"
   echo "rustc"
   echo "cargo"
+  echo "xclip"
 }
 package_install $(package_manager) $(dep_list)
 

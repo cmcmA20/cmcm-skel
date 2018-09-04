@@ -12,6 +12,11 @@ backup_root=${repo_root}/backup
 
 . ${include_dir}/functions.sh
 
+dep_list() {
+  echo "git"
+}
+package_install $(package_manager) $(dep_list)
+
 git_clone "https://github.com/callmecabman/cmcm-skel.git" "${repo_root}"
 
 OPTIND=1
