@@ -92,6 +92,7 @@ git_clone() {
 home_backup() {
   local backup_root=$(backup_root_path)
   local target=$1
+  # Kinda dirty, should generalize it
   local backup=${backup_root}/$(echo ${target} | sed "s;${HOME}/;;")
   mkdir -p "$(dirname ${backup})"
   if [ -e "${backup}" ] ; then
