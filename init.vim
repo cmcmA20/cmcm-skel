@@ -18,6 +18,7 @@ set list
 
 " KEYBINDINGS
 let mapleader=","
+let maplocalleader="<"
 
 map <leader>nh :nohlsearch<cr>
 
@@ -32,6 +33,11 @@ map <leader>tp :tabprevious<cr>
 map <leader>bd :bdelete<cr>
 map <leader>bn :bnext<cr>
 map <leader>bp :bprevious<cr>
+
+map <leader>a= :Align =<cr>
+map <leader>a, :Align ,<cr>
+map <leader>a<bar> :Align <bar><cr>
+map <leader>ap :Align 
 
 "nnoremap <silent> <leader>lh :call LanguageClient_textDocument_hover()<CR>
 "nnoremap <silent> <leader>ld :call LanguageClient_textDocument_definition()<CR>
@@ -57,6 +63,9 @@ let g:deoplete#enable_at_startup = 1
 "let g:LanguageClient_serverCommands = {
 "			\ 'haskell': ['hie', '--lsp'],
 "			\ }
+
+" align
+let g:loaded_AlignMapsPlugin=1
 
 " haskell-vim
 let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
