@@ -130,16 +130,18 @@ package_install $(package_manager) $(dep_list)
 git_clone "https://github.com/callmecabman/cmcm-skel.git" "${repo_root}"
 
 OPTIND=1
-while getopts ":hdatnp" opt; do
+while getopts ":hdatnsip" opt; do
   case "$opt" in
   h)
     echo "${whoami}\n"\
-         "-h\t\thelp\n"\
-         "-d\t\tdotfiles\n"\
-         "-a\t\talacritty\n"\
-         "-t\t\ttmux\n"\
-         "-n\t\tneovim\n"\
-         "-p\t\tvim plugins\n"
+         "-h\t\t[H]elp\n"\
+         "-d\t\t[D]otfiles\n"\
+         "-a\t\t[A]lacritty\n"\
+         "-t\t\t[T]mux\n"\
+         "-n\t\t[N]eovim\n"\
+         "-s\t\thaskell [S]tack\n"\
+         "-i\t\t[I]dris\n"\
+         "-p\t\tvim [P]lugins\n"
     exit 0
     ;;
   d)
@@ -162,6 +164,12 @@ while getopts ":hdatnp" opt; do
   n)
     . ${include_dir}/neovim.sh
     ;;
+  s)
+    . ${include_dir}/stack.sh
+    ;;
+#  i)
+#    . ${include_dir}/idris.sh
+#    ;;
   p)
     . ${include_dir}/vim-plugins.sh
     ;;
