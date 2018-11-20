@@ -52,7 +52,10 @@ package_manager() {
 }
 
 sudocmd() {
-  if command -v sudo >/dev/null; then
+  username=`id -un`
+  if [ "${username}" == "root" ]; then
+    "$@"
+  elif command -v sudo >/dev/null; then
     echo "sudo $@"
     # -k: Disable cached credentials.
     sudo -k "$@"
