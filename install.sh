@@ -51,6 +51,16 @@ package_manager() {
   echo ${pkg_mgr}
 }
 
+sudocmd() {
+  if command -v sudo >/dev/null; then
+    echo "sudo $@"
+    # -k: Disable cached credentials.
+    sudo -k "$@"
+  else
+    "$@"
+  fi
+}
+
 package_install() {
   local pkg_mgr=$1; shift
   if [ $# -eq 0 ] ; then
@@ -60,13 +70,17 @@ package_install() {
   echo "Installing packages [$*] using [$pkg_mgr]..."
   case ${pkg_mgr} in
     APT )
-      sudo apt-get install --no-upgrade -y $*
+      if dpkg-query -W "$*" > /dev/null; then
+        echo "[$*] already installed"
+      else
+        sudocmd apt-get install --no-upgrade -y $*
+      fi
       ;;
     DNF )
-      sudo dnf install -yq $*
+      sudocmd dnf install -yq $*
       ;;
     YUM )
-      sudo yum install -yq $*
+      sudocmd yum install -yq $*
       ;;
     OTHER )
       echo "Unknown package manager. Install the packages manually."
@@ -129,50 +143,70 @@ package_install $(package_manager) $(dep_list)
 
 git_clone "https://github.com/callmecabman/cmcm-skel.git" "${repo_root}"
 
-OPTIND=1
-while getopts ":hdatnsip" opt; do
-  case "$opt" in
-  h)
-    echo "${whoami}\n"\
-         "-h\t\t[H]elp\n"\
-         "-d\t\t[D]otfiles\n"\
-         "-a\t\t[A]lacritty\n"\
-         "-t\t\t[T]mux\n"\
-         "-n\t\t[N]eovim\n"\
-         "-s\t\thaskell [S]tack\n"\
-         "-i\t\t[I]dris\n"\
-         "-p\t\tvim [P]lugins\n"
-    exit 0
-    ;;
-  d)
-    safe_copy "${repo_root}/.aliases" "${HOME}/.aliases"
-    safe_copy "${repo_root}/.profile" "${HOME}/.profile"
-    safe_copy "${repo_root}/.rc" "${HOME}/.rc"
-    safe_symlink "${HOME}/.rc" "${HOME}/.bashrc"
-    safe_symlink "${HOME}/.rc" "${HOME}/.zshrc"
-    safe_copy "${repo_root}/.tmux.conf" "${HOME}/.tmux.conf"
-    if [ x"$x11" == "xyes" ] ; then
-      safe_copy "${repo_root}/.xsessionrc" "${HOME}/.xsessionrc"
-    fi
-    ;;
-  a)
-    . ${include_dir}/alacritty.sh
-    ;;
-  t)
-    . ${include_dir}/tmux.sh
-    ;;
-  n)
-    . ${include_dir}/neovim.sh
-    ;;
-  s)
-    . ${include_dir}/stack.sh
-    ;;
-#  i)
-#    . ${include_dir}/idris.sh
-#    ;;
-  p)
-    . ${include_dir}/vim-plugins.sh
-    ;;
+while [ $# -gt 0 ]; do
+  case "$1" in
+    -h|--help)
+      echo "${whoami}\n"\
+           "-h|--help\t\t[H]elp\n"\
+           "-x|--x11support\tfor [X]11 environment\n"\
+           "-d|--dotfiles\t\t[D]otfiles\n"\
+           "-p|--vim-plugins\tvim [P]lugins\n"\
+           "-m|--mosh\t\t[M]obile shell\n"\
+           "-a|--alacritty\t\t[A]lacritty\n"\
+           "-t|--tmux\t\t[T]mux\n"\
+           "-n|--neovim\t\t[N]eovim\n"\
+           "-s|--haskell-stack\thaskell [S]tack\n"\
+           "-i|--idris\t\t[I]dris\n"
+      exit 0
+      ;;
+    -x|--x11support)
+      x11=true
+      shift
+      ;;
+    -d|--dotfiles)
+      safe_copy "${repo_root}/.aliases" "${HOME}/.aliases"
+      safe_copy "${repo_root}/.profile" "${HOME}/.profile"
+      safe_copy "${repo_root}/.rc" "${HOME}/.rc"
+      safe_symlink "${HOME}/.rc" "${HOME}/.bashrc"
+      safe_symlink "${HOME}/.rc" "${HOME}/.zshrc"
+      safe_copy "${repo_root}/.tmux.conf" "${HOME}/.tmux.conf"
+      if [ x"$x11" == "xyes" ] ; then
+        safe_copy "${repo_root}/.xsessionrc" "${HOME}/.xsessionrc"
+      fi
+      shift
+      ;;
+    -p|--vim-plugins)
+      . ${include_dir}/vim-plugins.sh
+      shift
+      ;;
+    -m|--mosh)
+      . ${include_dir}/mosh.sh
+      shift
+      ;;
+    -a|--alacritty)
+      . ${include_dir}/alacritty.sh
+      shift
+      ;;
+    -t|--tmux)
+      . ${include_dir}/tmux.sh
+      shift
+      ;;
+    -n|--neovim)
+      . ${include_dir}/neovim.sh
+      shift
+      ;;
+    -s|--haskell-stack)
+      . ${include_dir}/haskell-stack.sh
+      shift
+      ;;
+    -i|--idris)
+      . ${include_dir}/idris.sh
+      shift
+      ;;
+    *)
+      echo "Invalid argument: $1" >&2
+      exit 1
+      ;;
   esac
 done
 
