@@ -173,9 +173,6 @@ while [ $# -gt 0 ]; do
       safe_symlink "${HOME}/.rc" "${HOME}/.bashrc"
       safe_symlink "${HOME}/.rc" "${HOME}/.zshrc"
       safe_copy "${repo_root}/.tmux.conf" "${HOME}/.tmux.conf"
-      if [ x"$x11" == "xyes" ] ; then
-        safe_copy "${repo_root}/.xsessionrc" "${HOME}/.xsessionrc"
-      fi
       shift
       ;;
     -p|--vim-plugins)

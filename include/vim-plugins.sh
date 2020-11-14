@@ -1,14 +1,5 @@
 #!/bin/sh
 
-dep_list() {
-  echo "git"
-  echo "curl"
-  echo "python3-pip"
-  echo "fonts-powerline"
-}
-package_install $(package_manager) $(dep_list)
-pip3 install neovim
-
 vim_dir=${HOME}/.vim
 pathogen_dir=${vim_dir}/autoload
 plug_dir=${vim_dir}/bundle
