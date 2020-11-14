@@ -20,8 +20,4 @@ if command -v nvim >/dev/null 2>&1 ; then
   alias view='nvim -R'
 fi
 
-if command -v rlwrap >/dev/null 2>&1 ; then
-  if command -v hol >/dev/null 2>&1 ; then
-    alias hol='rlwrap hol'
-  fi
-fi
+alias hol='rlwrap hol'
