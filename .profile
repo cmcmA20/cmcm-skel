@@ -37,6 +37,7 @@ if command -v vim >/dev/null 2>&1 ; then
 fi
 if command -v nvim >/dev/null 2>&1 ; then
   EDITOR='nvim'
+  nvim -R -U NONE -u NONE -c ":UpdateRemotePlugins" -c ":q"
 fi
 export EDITOR
 if [ -n $EDITOR ] ; then
