@@ -1,5 +1,11 @@
 #!/bin/sh
 
+nvim_dir=$(config_home_path)/nvim
+mkdir -p "${nvim_dir}"
+safe_copy "${repo_root}/init.vim" "${nvim_dir}/init.vim"
+safe_symlink "${nvim_dir}" "${HOME}/.vim"
+safe_symlink "${nvim_dir}/init.vim" "${HOME}/.vimrc"
+
 vim_dir=${HOME}/.vim
 pathogen_dir=${vim_dir}/autoload
 plug_dir=${vim_dir}/bundle
