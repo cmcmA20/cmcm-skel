@@ -32,7 +32,7 @@ map <leader>tp :tabprevious<cr>
 map <leader>tl :tabs<cr>
 
 map <leader>bc :enew<cr>
-map <leader>bx :bdelete<cr>
+map <leader>bx :Bdelete<cr>
 map <leader>bn :bnext<cr>
 map <leader>bp :bprevious<cr>
 map <leader>bl :ls<cr>

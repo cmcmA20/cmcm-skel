@@ -13,6 +13,12 @@ fi
 if [ -d "$HOME/.cargo/bin" ] ; then
   PATH="$HOME/.cargo/bin:$PATH"
 fi
+if [ -d "$HOME/HOL/bin" ] ; then
+  PATH="$HOME/HOL/bin:$PATH"
+fi
+if [ -d "$HOME/cakeml" ] ; then
+  PATH="$HOME/cakeml:$PATH"
+fi
 if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then
     . $HOME/.nix-profile/etc/profile.d/nix.sh;
 fi
