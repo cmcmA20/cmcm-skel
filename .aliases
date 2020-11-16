@@ -21,3 +21,7 @@ if command -v nvim >/dev/null 2>&1 ; then
 fi
 
 alias hol='rlwrap hol'
+
+if command -v git >/dev/null 2>&1 ; then
+  git config --global alias.lg "log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+fi
